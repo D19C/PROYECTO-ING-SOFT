@@ -1,0 +1,45 @@
+<!-- {% block title %}Home{% endblock %}  -->
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+	<title>Página principal</title>
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', path='style_registro.css') }}">
+</head>
+<body>
+	<header>
+		<h1>Ofertas de empleo</h1>
+		<nav>
+			<ul>
+				<li><a href="index.html">Inicio</a></li>
+				<li><a href="registro/registro.html">Registrarse</a></li>
+				<li><a href="inicio_s/inicio.html">Iniciar sesión</a></li>
+			</ul>
+		</nav>
+	</header>
+
+	<main>
+		<section>
+			<h2>Oferta de empleo 1</h2>
+			<p>Descripción de la oferta de empleo 1.</p>
+			<button><a href="postular/postular.html"  style="text-decoration:none;">Postular</a></button>
+		</section>
+		<section>
+			<h2>Oferta de empleo 2</h2>
+			<p>Descripción de la oferta de empleo 2.</p>
+			<button><a href="postular/postular.html"  style="text-decoration:none;">Postular</a></button>
+		</section>
+		<section>
+			<h2>Oferta de empleo 3</h2>
+			<p>Descripción de la oferta de empleo 3.</p>
+			<button><a href="postular/postular.html"  style="text-decoration:none;">Postular</a></button>
+		</section>
+	</main>
+
+	<footer>
+		<p>Derechos reservados © 2023</p>
+	</footer>
+</body>
+</html>
+{% endblock %}

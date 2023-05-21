@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Iniciar Sesión - Sistematización del Proceso de Gestión de Talento Humano</title>
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', path='style_inicio.css') }}">
+</head>
+<body>
+	<header>
+		<h1>Sistematización del Proceso de Gestión de Talento Humano</h1>
+		<nav>
+			<ul>
+				<li><a href="../index.html">Inicio</a></li>
+				<li><a href="../inicio_s/inicio.html">Iniciar sesión</a></li>
+				<li><a href="../registro/registro.html">Registrarse</a></li>
+			</ul>
+		</nav>
+	</header>
+
+	<main>
+		<section>
+			<h2>Iniciar Sesión</h2>
+			<form action="/login" method="POST">
+				<div>
+					<label for="tipo_doc">Tipo de documento:</label>
+					<select id="tipo_doc" name="tipo_doc">
+						<option value="cc">Cédula de ciudadanía</option>
+						<option value="ce">Cédula de extranjería</option>
+						<option value="ti">Tarjeta de identidad</option>
+					</select>
+				</div>
+				<div>
+					<label for="num_doc">Número de documento:</label>
+					<input type="text" id="num_doc" name="num_doc">
+				</div>
+				<div>
+					<label for="contrasena">Contraseña:</label>
+					<input type="password" id="contrasena" name="contrasena">
+				</div>
+				<button type="submit">Iniciar sesión</button>
+			</form>
+		</section>
+	</main>
+
+	<footer>
+		<p>&copy; 2023 Sistematización del Proceso de Gestión de Talento Humano. Todos los derechos reservados.</p>
+	</footer>
+</body>
+</html>

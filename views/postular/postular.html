@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Postular</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', path='style_registro.css') }}">
+</head>
+<body>
+    <div class="wrapper">
+        <div class="box">
+            <section>
+                <h1><center>Postular a un empleo</center></h1>
+                <form action="/postular" method="POST">
+                    <div class="form-group">
+                        <label for="tipo_doc">Tipo de documento:</label>
+                        <select id="tipo_doc" name="tipo_doc">
+                            <option value="cc">Cédula de ciudadanía</option>
+                            <option value="ce">Cédula de extranjería</option>
+                            <option value="ti">Tarjeta de identidad</option>
+                        </select> 
+                    </div>
+                    <div class="form-group">
+                        <label for="num_doc">Número de documento:</label>
+                        <input type="text" name="num_doc" id="num_doc" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="nombre">Nombre:</label>
+                        <input type="text" name="nombre" id="nombre" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="apellido">Apellido:</label>
+                        <input type="text" name="apellido" id="apellido" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="correo">Correo electrónico:</label>
+                        <input type="email" name="correo" id="correo" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="archivos">Adjuntar archivos:</label>
+                        <input type="file" name="archivos" id="archivos" multiple>
+                    </div>
+                    <button type="submit">Enviar</button>
+                </form>
+            </section>
+        </div>
+    </div>
+	<footer>
+		<p>Derechos reservados © 2023</p>
+	</footer>
+</body>
+</html>

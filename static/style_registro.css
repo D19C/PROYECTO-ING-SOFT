@@ -1,0 +1,114 @@
+/* Estilos generales */
+* {
+	box-sizing: border-box;
+	font-family: Arial, sans-serif;
+  }
+  
+  body {
+	margin: 0;
+	padding: 0;
+	display: grid;
+	grid-template-rows: auto 1fr auto;
+	min-height: 100vh;
+  }
+  
+  /* Estilos para la cabecera */
+  header {
+	background-color: #333;
+	color: #fff;
+	padding: 20px;
+	grid-row: 1;
+  }
+  
+  h1 {
+	margin: 0;
+	font-size: 30px;
+  }
+  
+  nav ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	display: flex;
+	justify-content: flex-end;
+  }
+  
+  nav li {
+	margin-left: 20px;
+  }
+  
+  nav a {
+	color: #fff;
+	text-decoration: none;
+  }
+  
+  /* Estilos para el contenido principal */
+  main {
+	padding: 20px;
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+	grid-row: 2;
+	gap: 20px;
+	justify-items: center;
+	align-items: start; /* Ajusta el contenido hacia la parte superior */
+  }
+  
+  section {
+	background-color: #f2f2f2;
+	border-radius: 10px;
+	padding: 20px;
+	box-shadow: 0 0 10px #ccc;
+	width: 100%;
+	max-width: 400px;
+  }
+  
+  h2 {
+	margin-top: 0;
+	margin-bottom: 20px;
+	text-align: center;
+  }
+  
+  form {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+  }
+  
+  label {
+	margin-right: 10px;
+  }
+  
+  select,
+  input {
+	margin-bottom: 20px;
+	padding: 10px;
+	border-radius: 5px;
+	border: none;
+	box-shadow: 0 0 10px #ccc;
+	width: 100%;
+  }
+  
+  button {
+	background-color: #333;
+	color: #fff;
+	border: none;
+	padding: 10px 20px;
+	border-radius: 5px;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+	width: 100%;
+  }
+  
+  button:hover {
+	background-color: #666;
+  }
+  
+  /* Estilos para el pie de página */
+  footer {
+	background-color: #333;
+	color: #fff;
+	padding: 20px;
+	grid-row: 3;
+	text-align: center;
+  }
+  
