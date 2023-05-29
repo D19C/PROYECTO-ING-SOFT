@@ -10,7 +10,7 @@
     <h1>Bienvenido al Sistema</h1>
     <nav>
         <ul>
-            <li><a href="index.html">Cerrar Sesión</a></li>
+            <li><a href="../index.html">Cerrar Sesión</a></li>
         </ul>
     </nav>
 </header>
@@ -18,26 +18,131 @@
     <section class="wrapper">
         <nav class="sidebar">
             <ul>
-                <li><a href="#">Selección y Contratación</a></li>
-                <li><a href="#">Afiliaciones Seguridad Social</a></li>
-                <li><a href="#">Liquidación de Nomina</a></li>
-                <li><a href="#">Liquidación definitiva de contratos</a></li>
-                <li><a href="#">Liquidación planilla de aportes a seguridad social</a></li>
-                <li><a href="#">Retiro de personal</a></li>
-                <li><a href="#">Certificaciones laborales</a></li>
-                <li><a href="#">Inducción, Re inducción y entrenamiento</a></li>
-                <li><a href="#">Capacitación</a></li>
-                <li><a href="#">Evaluación de desempeño</a></li>
+                <nav>
+                    <ul>
+                        <li><a href="#" onclick="cargarContenido('/opciones/sc.html')">Selección y Contratación</a></li>
+                        <li><a href="#" onclick="cargarContenido('/opciones/social.html')">Afiliaciones Seguridad Social</a></li>
+                        <li><a href="#" onclick="cargarContenido('/opciones/liqNomina.html')">Liquidación de Nómina</a></li>
+                        <li><a href="#" onclick="cargarContenido('/opciones/liqContratos.html')">Liquidación definitiva de contratos</a></li>
+                        <li><a href="#" onclick="cargarContenido('/opciones/liqSocial.html')">Liquidación aportes seguridad social</a></li>
+                        <li><a href="#" onclick="cargarContenido('/opciones/retiro.html')">Retiro de personal</a></li>
+                        <li><a href="#" onclick="cargarContenido('/opciones/certLaboral.html')">Certificaciones laborales</a></li>
+                        <li><a href="#" onclick="cargarContenido('/opciones/indu.html')">Indu/Reindu/entrena</a></li>
+                        <li><a href="#" onclick="cargarContenido('/opciones/capacitacion.html')">Capacitación</a></li>
+                        <li><a href="#" onclick="cargarContenido('/opciones/evalDesenpeno.html')">Evaluación de desempeño</a></li>
+                    </ul>
+                </nav>
             </ul>
         </nav>
         <article>
-            <h2>Contenido principal</h2>
-            <p>Aquí iría el contenido principal de la página</p>
+            <div id="contenido"></div>
         </article>
     </section>
 </main>
 <footer>
     <p>Derechos reservados © 2023</p>
 </footer>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+  function cargarContenido(ruta) {
+    fetch(ruta)
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById("contenido").innerHTML = data;
+      })
+      .catch(error => console.error(error));
+  }
+  function descargarArchivo(nombreArchivo, contenidoArchivo) {
+        const blob = new Blob([contenidoArchivo], { type: "application/pdf" });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = nombreArchivo;
+        link.click();
+    }
+
+    function generarCertificacion() {
+        const nombre = document.getElementById("nombre").value;
+        const tipoDoc = document.getElementById("tipo_doc").value;
+        const numDoc = document.getElementById("num_doc").value;
+
+        fetch(`/generate_certification?nombre=${encodeURIComponent(nombre)}&tipo_doc=${encodeURIComponent(tipoDoc)}&num_doc=${encodeURIComponent(numDoc)}`)
+            .then(response => response.blob())
+            .then(blob => {
+                const nombreArchivo = "certificacion_laboral.pdf";
+                descargarArchivo(nombreArchivo, blob);
+            });
+    }
+
+    function generarCesantias() {
+        const nombre = document.getElementById("nombre").value;
+        const tipoDoc = document.getElementById("tipo_doc").value;
+        const numDoc = document.getElementById("num_doc").value;
+
+        fetch(`/generate_cesantias?nombre=${encodeURIComponent(nombre)}&tipo_doc=${encodeURIComponent(tipoDoc)}&num_doc=${encodeURIComponent(numDoc)}`)
+            .then(response => response.blob())
+            .then(blob => {
+                const nombreArchivo = "carta_cesantias.pdf";
+                descargarArchivo(nombreArchivo, blob);
+            });
+    }
+
+    function generarOrdenPago() {
+        const nombre = document.getElementById("nombre").value;
+        const tipoDoc = document.getElementById("tipo_doc").value;
+        const numDoc = document.getElementById("num_doc").value;
+
+        fetch(`/generate_orden_pago?nombre=${encodeURIComponent(nombre)}&tipo_doc=${encodeURIComponent(tipoDoc)}&num_doc=${encodeURIComponent(numDoc)}`)
+            .then(response => response.blob())
+            .then(blob => {
+                const nombreArchivo = "orden_pago_liquidacion.pdf";
+                descargarArchivo(nombreArchivo, blob);
+            });
+    }
+    function generarCertificacionLab() {
+        const tipo_emp = document.getElementById("tipo_emp").value;
+        const nombre = document.getElementById("nombre").value;
+        const tipoDoc = document.getElementById("tipo_doc").value;
+        const numDoc = document.getElementById("num_doc").value;
+
+        fetch(`/generate_certificationLab?tipo_emp=${encodeURIComponent(tipo_emp)}&nombre=${encodeURIComponent(nombre)}&tipo_doc=${encodeURIComponent(tipoDoc)}&num_doc=${encodeURIComponent(numDoc)}`)
+            .then(response => response.blob())
+            .then(blob => {
+                const nombreArchivo = "CertificadoLaboral.pdf";
+                descargarArchivo(nombreArchivo, blob);
+            });
+    }  
+    function agendarCapacitacion() {
+        const numDoc = document.getElementById("num_doc").value;
+        const fecha = document.getElementById("fecha").value;
+
+        // Aquí puedes realizar las acciones necesarias para agendar la capacitación, como enviar los datos al servidor
+
+        alert(`Capacitación agendada:\nNúmero de documento: ${numDoc}\nFecha: ${fecha}`);
+        location.reload()
+    }
+    function agendarIndu() {
+        const tipo_indu = document.getElementById("tipo_indu").value;
+        const numDoc = document.getElementById("num_doc").value;
+        const fecha = document.getElementById("fecha").value;
+
+        // Aquí puedes realizar las acciones necesarias para agendar la capacitación, como enviar los datos al servidor
+
+        alert(`${tipo_indu} agendada:\nNúmero de documento: ${numDoc}\nFecha: ${fecha}`);
+        location.reload()
+    }
+    function agendarIndu() {
+        const tipo_indu = document.getElementById("tipo_indu").value;
+        const numDoc = document.getElementById("num_doc").value;
+        const fecha = document.getElementById("fecha").value;
+
+        // Aquí puedes realizar las acciones necesarias para la evaluación, como enviar los datos al servidor
+
+        alert("Evaluación completada. Gracias por su participación.");
+        location.reload()
+    }
+
+
+</script>
 </body>
 </html>

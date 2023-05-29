@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Evaluación de Empleado</title>
+</head>
+<body>
+    <h2>Evaluación de Empleado</h2>
+    <form id="evaluation-form">
+        <label for="documento">Número de Documento:</label>
+        <input type="text" id="documento" name="documento" required>
+
+        <h3>Rúbrica de Evaluación (1-5)</h3>
+        <label for="habilidades">Habilidades:</label>
+        <input type="number" id="habilidades" name="habilidades" min="1" max="5" required>
+
+        <label for="productividad">Productividad:</label>
+        <input type="number" id="productividad" name="productividad" min="1" max="5" required>
+
+        <label for="actitud">Actitud:</label>
+        <input type="number" id="actitud" name="actitud" min="1" max="5" required>
+
+        <label for="puntualidad">Puntualidad:</label>
+        <input type="number" id="puntualidad" name="puntualidad" min="1" max="5" required>
+
+        <label for="comunicacion">Comunicación:</label>
+        <input type="number" id="comunicacion" name="comunicacion" min="1" max="5" required>
+
+        <button type="submit">Evaluar</button>
+    </form>
+
+</body>
+</html>

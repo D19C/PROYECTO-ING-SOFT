@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Agendar INDUCCIÓN, REINDUCCIÓN Y ENTRENAMIENTO</title>
+    <style>
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+<main>
+    <h2>Agendar INDUCCIÓN, REINDUCCIÓN Y ENTRENAMIENTO</h2>
+    <form>
+        <label for="tipo_indu">Tipo de solicitud:</label>
+        <select id="tipo_indu" name="tipo_emp" required>
+            <option value="Induccion">Inducción</option>
+            <option value="Re induccion">Re Inducción</option>
+            <option value="Entrenamiento">Entrenamiento</option>
+        </select>
+        
+        <label for="num_doc">Número de documento:</label>
+        <input type="text" id="num_doc" name="num_doc" required>
+
+        <label for="fecha">Fecha:</label>
+        <input type="date" id="fecha" name="fecha" required>
+
+        <button type="button" onclick="agendarIndu()">Agendar</button>
+    </form>
+</main>
+
+</body>
+</html>

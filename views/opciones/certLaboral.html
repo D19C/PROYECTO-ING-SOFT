@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Generación de certificado en PDF</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.0/jspdf.umd.min.js"></script>
+</head>
+<body>
+<main>
+    <h2>Datos del Empleado</h2>
+    <form id="employee-form">
+        <label for="tipo_emp">Tipo de solicitud:</label>
+        <select id="tipo_emp" name="tipo_emp" required>
+            <option value="COLABORADOR">Colaboradores</option>
+            <option value="EX EMPLEADO">Ex-Empleados</option>
+        </select>
+
+        <label for="nombre">Nombre Completo:</label>
+        <input type="text" id="nombre" name="nombre" required>
+
+        <label for="tipo_doc">Tipo de Documento:</label>
+        <select id="tipo_doc" name="tipo_doc" required>
+            <option value="cc">Cédula de ciudadanía</option>
+            <option value="ce">Cédula de extranjería</option>
+            <option value="ti">Tarjeta de identidad</option>
+        </select>
+
+        <label for="num_doc">Número de documento:</label>
+        <input type="text" name="num_doc" id="num_doc" required>
+
+        <button type="button" onclick="generarCertificacionLab()">Generar Certificación Laboral</button>
+    </form>
+</main>
+</body>
+</html>
