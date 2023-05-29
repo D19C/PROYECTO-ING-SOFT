@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Generación de Documentos en PDF</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.0/jspdf.umd.min.js"></script>
+</head>
+<body>
+<main>
+    <h2>Datos del Empleado</h2>
+    <form id="employee-form">
+        
+        <label for="tipo_doc">Tipo de Documento:</label>
+        <select id="tipo_doc" name="tipo_doc" required>
+            <option value="cc">Cédula de ciudadanía</option>
+            <option value="ce">Cédula de extranjería</option>
+            <option value="ti">Tarjeta de identidad</option>
+        </select>
+        
+        <label for="num_doc">Número de documento:</label>
+        <input type="text" name="num_doc" id="num_doc" required>
+        
+        <label for="nombre">Nombre Completo:</label>
+        <input type="text" id="nombre" name="nombre" required>
+
+        <label >Periodo a liquidar nomina:</label>
+        <label for="fecha_inicio">Fecha inicio:</label>
+        <input type="date" id="fecha_inicio" name="fecha_inicio" required>
+
+        <label for="fecha_fin">Fecha fin:</label>
+        <input type="date" id="fecha_fin" name="fecha_fin" required>
+
+        <button type="button" onclick="generarNomina()">Generar liquidación nomina</button>
+    </form>
+</main>
+</body>
+</html>

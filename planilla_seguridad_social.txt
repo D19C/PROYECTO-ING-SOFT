@@ -1,0 +1,5 @@
+Tipo de documento: cc
+Número de documento: 56365
+Nombre: 36535
+Fecha de inicio: 0005-03-06
+Fecha de fin: 0003-06-05

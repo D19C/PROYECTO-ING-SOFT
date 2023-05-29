@@ -9,7 +9,9 @@ from fastapi.responses import FileResponse
 #--------------------------------------------------
 from pdfdocument.document import PDFDocument 
 from io import BytesIO
-
+import random
+from reportlab.lib.pagesizes import letter
+from reportlab.pdfgen import canvas
 
 #MAIN APP
 app = FastAPI()
@@ -254,3 +256,91 @@ def generate_certification(tipo_emp: str = Query(...), nombre: str = Query(...),
 
     # Devolver el PDF como respuesta
     return Response(content=pdf_content, headers=headers)
+
+@app.get("/generatePlanilla")
+def generate_planilla(
+    tipo_doc: str = Query(...),
+    num_doc: str = Query(...),
+    nombre: str = Query(...),
+    fecha_inicio: str = Query(...),
+    fecha_fin: str = Query(...),
+):
+    # Realizar cálculos de liquidación de seguridad social
+    # ...
+
+    # Crear el contenido de la planilla en formato de texto
+    contenido = f"Tipo de documento: {tipo_doc}\n"
+    contenido += f"Número de documento: {num_doc}\n"
+    contenido += f"Nombre: {nombre}\n"
+    contenido += f"Fecha de inicio: {fecha_inicio}\n"
+    contenido += f"Fecha de fin: {fecha_fin}\n"
+
+    # Agregar los cálculos de liquidación de seguridad social al contenido
+    # contenido += "Cálculos de seguridad social: ...\n"
+
+    # Guardar el contenido en un archivo txt
+    with open("planilla_seguridad_social.txt", "w") as file:
+        file.write(contenido)
+
+    # Establecer las cabeceras de la respuesta para indicar que es un archivo txt
+    headers = {
+        "Content-Disposition": "attachment; filename=planilla_seguridad_social.txt",
+        "Content-Type": "text/plain",
+    }
+
+    # Leer el contenido del archivo
+    with open("planilla_seguridad_social.txt", "r") as file:
+        contenido = file.read()
+
+    # Devolver el contenido del archivo como respuesta
+    return Response(content=contenido, headers=headers)
+
+from datetime import datetime
+
+@app.get("/generateLiqContrato")
+def generate_planilla(
+    tipo_doc: str = Query(...),
+    num_doc: str = Query(...),
+    nombre: str = Query(...),
+    fecha_inicio: str = Query(...),
+    fecha_fin: str = Query(...),
+):
+    formato_fecha = "%Y-%m-%d"
+
+    # Convertir las fechas a objetos datetime
+    inicio = datetime.strptime(fecha_inicio, formato_fecha)
+    fin = datetime.strptime(fecha_fin, formato_fecha)
+
+    # Calcular la diferencia en días
+    dias_trabajados = (fin - inicio).days
+
+    # Realizar cálculos de liquidación de seguridad social
+    # ...
+
+    # Crear el contenido de la planilla en formato de texto
+    contenido = f"Tipo de documento: {tipo_doc}\n"
+    contenido += f"Número de documento: {num_doc}\n"
+    contenido += f"Nombre: {nombre}\n"
+    contenido += f"Fecha de inicio: {fecha_inicio}\n"
+    contenido += f"Fecha de fin: {fecha_fin}\n"
+    contenido += f"Días trabajados: {dias_trabajados}\n"
+
+    # Agregar los cálculos de liquidación de seguridad social al contenido
+    # contenido += "Cálculos de seguridad social: ...\n"
+
+    # Guardar el contenido en un archivo txt
+    with open("Liquidacion.txt", "w") as file:
+        file.write(contenido)
+
+    # Establecer las cabeceras de la respuesta para indicar que es un archivo txt
+    headers = {
+        "Content-Disposition": "attachment; filename=Liquidacion.txt",
+        "Content-Type": "text/plain",
+    }
+
+    # Leer el contenido del archivo
+    with open("Liquidacion.txt", "r") as file:
+        contenido = file.read()
+
+    # Devolver el contenido del archivo como respuesta
+    return Response(content=contenido, headers=headers)

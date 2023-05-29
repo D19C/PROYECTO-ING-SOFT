@@ -131,18 +131,78 @@
         alert(`${tipo_indu} agendada:\nNúmero de documento: ${numDoc}\nFecha: ${fecha}`);
         location.reload()
     }
-    function agendarIndu() {
-        const tipo_indu = document.getElementById("tipo_indu").value;
-        const numDoc = document.getElementById("num_doc").value;
-        const fecha = document.getElementById("fecha").value;
-
+    function evaluacion() {
         // Aquí puedes realizar las acciones necesarias para la evaluación, como enviar los datos al servidor
 
         alert("Evaluación completada. Gracias por su participación.");
         location.reload()
     }
 
+    function generarNomina() {
+        const tipo_doc = document.getElementById("tipo_doc").value;
+        const num_doc = document.getElementById("num_doc").value;
+        const nombre = document.getElementById("nombre").value;
+        const fecha_inicio = document.getElementById("fecha_inicio").value;
+        const fecha_fin = document.getElementById("fecha_fin").value;
 
+        fetch(`/generateNomina?tipo_doc=${encodeURIComponent(tipo_doc)}&num_doc=${encodeURIComponent(num_doc)}&nombre=${encodeURIComponent(nombre)}&fecha_inicio=${encodeURIComponent(fecha_inicio)}&fecha_fin=${encodeURIComponent(fecha_fin)}`)
+            .then(response => response.blob())
+            .then(blob => {
+                const nombreArchivo = "nomina.pdf";
+                descargarArchivo(nombreArchivo, blob);
+            });
+    }
+    function generarPlanilla() {
+    const tipo_doc = document.getElementById("tipo_doc").value;
+    const num_doc = document.getElementById("num_doc").value;
+    const nombre = document.getElementById("nombre").value;
+    const fecha_inicio = document.getElementById("fecha_inicio").value;
+    const fecha_fin = document.getElementById("fecha_fin").value;
+
+    fetch(`/generatePlanilla?tipo_doc=${encodeURIComponent(tipo_doc)}&num_doc=${encodeURIComponent(num_doc)}&nombre=${encodeURIComponent(nombre)}&fecha_inicio=${encodeURIComponent(fecha_inicio)}&fecha_fin=${encodeURIComponent(fecha_fin)}`)
+        .then(response => response.blob())
+        .then(blob => {
+            // Crear un objeto URL para el blob
+            const url = URL.createObjectURL(blob);
+
+            // Crear un enlace y establecer sus atributos
+            const link = document.createElement("a");
+            link.href = url;
+            link.download = "planilla_seguridad_social.txt";
+
+            // Simular el clic en el enlace para iniciar la descarga
+            link.click();
+
+            // Liberar el objeto URL
+            URL.revokeObjectURL(url);
+        });
+}
+    function generarLiqContrato() {
+    const tipo_doc = document.getElementById("tipo_doc").value;
+    const num_doc = document.getElementById("num_doc").value;
+    const nombre = document.getElementById("nombre").value;
+    const fecha_inicio = document.getElementById("fecha_inicio").value;
+    const fecha_fin = document.getElementById("fecha_fin").value;
+
+    fetch(`/generateLiqContrato?tipo_doc=${encodeURIComponent(tipo_doc)}&num_doc=${encodeURIComponent(num_doc)}&nombre=${encodeURIComponent(nombre)}&fecha_inicio=${encodeURIComponent(fecha_inicio)}&fecha_fin=${encodeURIComponent(fecha_fin)}`)
+        .then(response => response.blob())
+        .then(blob => {
+            // Crear un objeto URL para el blob
+            const url = URL.createObjectURL(blob);
+
+            // Crear un enlace y establecer sus atributos
+            const link = document.createElement("a");
+            link.href = url;
+            link.download = "Liquidacion.txt";
+
+            // Simular el clic en el enlace para iniciar la descarga
+            link.click();
+
+            // Liberar el objeto URL
+            URL.revokeObjectURL(url);
+        });
+}
+  
 </script>
 </body>
 </html>
